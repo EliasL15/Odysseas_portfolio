@@ -27,4 +27,4 @@ Welcome to the official GitHub repository for **Odysseas Pantazis's Musician Por
 - **CSS3**: Styling and layout to create a visually appealing design.
 - **JavaScript**: Adding interactivity, such as the burger menu toggle and smooth scrolling effects.
 - **Google Fonts**: Utilizing 'Lato' and 'Playfair Display' for modern and elegant typography.
-- **Formspree**: (Optional) For handling contact emails if forms are reintroduced in the future.
+
