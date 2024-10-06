@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Odysseas Pantazis - Musician Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="favicon.ico">
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav id="navbar">
+        <div class="container">
+            <h1 class="logo">Odysseas Pantazis</h1>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#video">Video</a></li>
+                <li><a href="#music">Music</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="burger" id="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <div class="hero-container">
+            <h2>Welcome to the Official Website of</h2>
+            <h1>Odysseas Pantazis</h1>
+            <p>Musician | Composer | Performer</p>
+            <a href="#music" class="btn">Explore Music</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container about-container">
+            <div class="about-img">
+                <img src="images/odysseas.jpg" alt="Odysseas Pantazis">
+            </div>
+            <div class="about-text">
+                <h2>About Me</h2>
+                <p>
+                    Odysseas is currently studying Film Music BMus at the Guildhall School of Music and Drama. Coming from a background as a guitarist, he has performed in numerous rock and metal bands, recording an album with the band Gas Station Lollipops and performing in various venues around Nicosia, Cyprus. After moving to London, he has started his career as a film composer and sound designer. He has arranged for OrchestRAVE, an orchestral remix which will be uploaded soon on YouTube, orchestrated and sound designed for <em>The Road Ahead</em> short film series which will be screened at the Barbican Cinema, and collaborated with animators from Central Saint Martins as a composer and a sound designer. He has also written a piece which was performed at the National Gallery by a string quartet, inspired by a painting by Turner, as well as creating soundscapes for a live theatre experience collaboration with LIFT.
+                </p>
+                <a href="#contact" class="btn">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video">
+        <div class="container">
+            <h2>Featured Video</h2>
+            <div class="video-container">
+                <video controls>
+                    <source src="videos/SHOWREEL.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Section -->
+    <section id="music">
+        <div class="container">
+            <h2>Music</h2>
+            <div class="music-grid">
+                <!-- Music Item 1 -->
+                <div class="music-item">
+                    <img src="images/album1.jpg" alt="Album Cover">
+                    <h3>Album Title 1</h3>
+                    <audio controls>
+                        <source src="music/song1.mp3" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- Music Item 2 -->
+                <div class="music-item">
+                    <img src="images/album2.jpg" alt="Album Cover">
+                    <h3>Album Title 2</h3>
+                    <audio controls>
+                        <source src="music/song2.mp3" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- Music Item 3 -->
+                <div class="music-item">
+                    <img src="images/album3.jpg" alt="Album Cover">
+                    <h3>Album Title 3</h3>
+                    <audio controls>
+                        <source src="music/song3.mp3" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container contact-container">
+            <h2>Contact</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <input type="text" id="name" required placeholder=" ">
+                    <label for="name">Name</label>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" required placeholder=" ">
+                    <label for="email">Email</label>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" rows="5" required placeholder=" "></textarea>
+                    <label for="message">Message</label>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <p>&copy; 2024 Odysseas Pantazis. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="#"><img src="icons/facebook.svg" alt="Facebook"></a>
+                <a href="#"><img src="icons/twitter.svg" alt="Twitter"></a>
+                <a href="#"><img src="icons/instagram.svg" alt="Instagram"></a>
+                <a href="#"><img src="icons/youtube.svg" alt="YouTube"></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
