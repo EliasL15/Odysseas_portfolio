@@ -201,11 +201,12 @@ nav .burger div {
     justify-content: center;
 }
 
-.video-container video {
+.video-container iframe {
     width: 100%;
     max-width: 800px;
+    height: 450px;
     border-radius: 10px;
-    outline: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 /* Music Section */
@@ -254,6 +255,7 @@ nav .burger div {
 #contact {
     padding: 5rem 0;
     background-color: #fff;
+    text-align: center;
 }
 
 .contact-container {
@@ -262,74 +264,25 @@ nav .burger div {
 }
 
 #contact h2 {
-    text-align: center;
     margin-bottom: 2rem;
     font-size: 2.5rem;
 }
 
-#contact-form {
-    display: flex;
-    flex-direction: column;
+#contact p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
 }
 
-.form-group {
-    position: relative;
-    margin-bottom: 2.5rem;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 1rem;
-    border: none;
-    border-bottom: 2px solid #ccc;
-    background: transparent;
-    font-size: 1rem;
-    color: #333;
-    outline: none;
-    transition: border-color 0.3s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    border-bottom-color: #e8491d;
-}
-
-.form-group label {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    font-size: 1rem;
-    color: #666;
-    pointer-events: none;
-    transition: all 0.3s ease;
-}
-
-.form-group input:focus + label,
-.form-group input:not(:placeholder-shown) + label,
-.form-group textarea:focus + label,
-.form-group textarea:not(:placeholder-shown) + label {
-    top: -0.5rem;
-    font-size: 0.85rem;
+#contact a {
     color: #e8491d;
+    text-decoration: none;
+    font-weight: 700;
 }
 
-#contact-form .btn {
-    align-self: center;
-    background: #e8491d;
-    color: #fff;
-    padding: 0.8rem 2.5rem;
-    border: none;
-    border-radius: 30px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.3s;
+#contact a:hover {
+    text-decoration: underline;
 }
 
-#contact-form .btn:hover {
-    background: #c7370f;
-    transform: translateY(-3px);
-}
 
 /* Footer */
 footer {
@@ -357,7 +310,16 @@ footer {
 .social-links img {
     width: 24px;
     height: 24px;
-    /* filter: brightness(1) invert(0); */
+    transition: transform 0.3s;
+}
+
+.social-links img:hover {
+    transform: scale(1.2);
+}
+
+.social-links span {
+    font-size: 1rem;
+    color: #fff; /* Ensure the text color matches the footer text color */
 }
 
 /* Responsive Styles */
@@ -400,15 +362,14 @@ footer {
         padding: 3rem 0;
     }
 
-    .form-group {
-        margin-bottom: 2rem;
-    }
-
     #contact h2 {
         font-size: 2rem;
     }
 
-    #contact-form .btn {
-        width: 100%;
+    #contact p {
+        font-size: 1rem;
+    }
+    .video-container iframe {
+        height: 250px;
     }
 }
