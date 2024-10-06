@@ -23,6 +23,16 @@ navItems.forEach(item => {
     });
 });
 
+// Smooth Scrolling for Explore Music
+const exploreMusic = document.getElementById('explore-music');
+
+exploreMusic.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelector('#music').scrollIntoView({
+        behavior: 'smooth'
+    });
+});
+
 // Form Submission Handling
 const contactForm = document.getElementById('contact-form');
 
