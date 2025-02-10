@@ -2,126 +2,115 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Odysseas Pantazis - Musician Portfolio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="favicon.ico">
-    <!-- Link to external CSS -->
-    <link rel="stylesheet" href="styles.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odysseas | Music & Experimental Film</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        
+        body {
+            background-color: #0a0a0a;
+            color: #d0d0d0;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            animation: fadeIn 1.5s ease-in;
+            position: relative;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/noisy-grid.png'), url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+            opacity: 0.12;
+            pointer-events: none;
+        }
+        
+        header {
+            padding: 20px;
+            background: linear-gradient(90deg, #111, #440000);
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.3);
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        
+        .section {
+            width: 80%;
+            max-width: 1000px;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(40, 10, 10, 0.9);
+            border-radius: 12px;
+            box-shadow: 0px 0px 15px rgba(255, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .section:hover {
+            transform: scale(1.05);
+        }
+        
+        iframe {
+            width: 100%;
+            height: 500px;
+            border-radius: 5px;
+            border: none;
+        }
+        
+        a {
+            color: #ff3300;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://player.vimeo.com/api/player.js"></script>
 </head>
 <body>
-
-    <!-- Navigation Bar -->
-    <nav id="navbar">
-        <div class="container">
-            <h1 class="logo">Odysseas Pantazis</h1>
-            <ul class="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#video">Video</a></li>
-                <li><a href="#music">Music</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="burger" id="burger">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
-            </div>
+    <header>Odysseas | Music & Experimental Film</header>
+    <div class="container">
+        <div class="section">
+            <h2>Αεεμμ</h2>
+            <p>A surreal auditory and visual experience.</p>
+            <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1055039350?h=492d545e98&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="3)αεεμμ"></iframe></div>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home">
-        <div class="hero-container">
-            <h1>Odysseas Pantazis</h1>
-            <p>Composer for Film and TV  |  Sound Designer</p>
-            <a href="#music" id = "explore-music" class="btn">Explore Music</a>
+        <div class="section">
+            <h2>Film Archives</h2>
+            <p>Exploring memories and forgotten visuals.</p>
+            <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1055039721?h=2dff7ae3cd&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="2)Film Archives"></iframe></div>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container about-container">
-            <div class="about-img">
-                <img src="images/odysseas.jpg" alt="Odysseas Pantazis">
-            </div>
-            <div class="about-text">
-                <h2>About Me</h2>
-                <p>
-                    Odysseas is currently studying Film Music BMus at the Guildhall School of Music and Drama. Coming from a background as a guitarist, he has performed in numerous rock and metal bands, recording an album with the band Gas Station Lollipops and performing in various venues around Nicosia, Cyprus. After moving to London, he has started his career as a film composer and sound designer. He has arranged for OrchestRAVE, an orchestral remix which will be uploaded soon on YouTube, orchestrated and sound designed for <em>The Road Ahead</em> short film series which will be screened at the Barbican Cinema, and collaborated with animators from Central Saint Martins as a composer and a sound designer. He has also written a piece which was performed at the National Gallery by a string quartet, inspired by a painting by Turner, as well as creating soundscapes for a live theatre experience collaboration with LIFT.
-                </p>
-                <a href="#contact" class="btn">Get in Touch</a>
-            </div>
+        <div class="section">
+            <h2>About</h2>
+            <p>Odysseas is a musician and sound designer exploring the intersection of electronic music, sound art, and experimental filmmaking.</p>
+            <p>Based in London.</p>
+            <p>Contact: <a href="mailto:odypantazis@gmail.com">odypantazis@gmail.com</a></p>
+            <p>Instagram: <a href="https://instagram.com/odysseaspantazis" target="_blank">@odysseaspantazis</a></p>
         </div>
-    </section>
-
-    <!-- Video Section -->
-    <section id="video">
-        <div class="container">
-            <h2>Featured Video</h2>
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_HERE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- Music Section -->
-    <section id="music">
-        <div class="container">
-            <h2>Music</h2>
-            <div class="music-grid">
-                <!-- Music Item 1 -->
-                <div class="music-item">
-                    <img src="images/album1.jpg" alt="Album Cover">
-                    <h3>Album Title 1</h3>
-                    <audio controls>
-                        <source src="music/song1.mp3" type="audio/mp3">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- Music Item 2 -->
-                <div class="music-item">
-                    <img src="images/album2.jpg" alt="Album Cover">
-                    <h3>Album Title 2</h3>
-                    <audio controls>
-                        <source src="music/song2.mp3" type="audio/mp3">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <!-- Music Item 3 -->
-                <div class="music-item">
-                    <img src="images/album3.jpg" alt="Album Cover">
-                    <h3>Album Title 3</h3>
-                    <audio controls>
-                        <source src="music/song3.mp3" type="audio/mp3">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container contact-container">
-            <h2>Contact</h2>
-            <p>If you'd like to get in touch, feel free to email me at <a href="mailto:odypantazis@gmail.com">odypantazis@gmail.com</a>.</p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container footer-container">
-            <p>&copy; 2024 Odysseas Pantazis. All Rights Reserved.</p>
-            <div class="social-links">
-                <span>Follow me on Instagram</span>
-                <a href="https://www.instagram.com/odysseas.music/"><img src="icons/instagram.svg" alt="Instagram"></a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+    </div>
 </body>
 </html>
+
+
+
+
+
