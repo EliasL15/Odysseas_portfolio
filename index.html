@@ -5,187 +5,594 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Odysseas Pantazis | Composer & Sound Designer</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+    /* High-class Bauhaus + Electronic Edge Typography */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap');
+
+    :root {
+      --bg-color: #ffffff;
+      --text-main: #000000;
+      --text-muted: #666666;
+      --grid-line: #000000;
+      
+      /* Classic Bauhaus Palette */
+      --bau-red: #D12D2D;
+      --bau-yellow: #F2B705;
+      --bau-blue: #1B4A93;
+    }
+
+    * {
+      box-sizing: border-box;
+      cursor: crosshair !important;
+    }
+
+    /* INVERT SYSTEM TOGGLE */
+    html {
+      scroll-behavior: smooth;
+      transition: filter 0.3s ease;
+      background-color: #f7f7f7;
+    }
+    
+    html.invert-active {
+      filter: invert(1) hue-rotate(180deg);
+    }
+    
+    /* Re-invert media so videos and photos don't look completely deep-fried unless you want them to */
+    html.invert-active img, 
+    html.invert-active iframe {
+      filter: invert(1) hue-rotate(180deg);
+    }
+
+    /* FILM GRAIN OVERLAY */
+    #grain-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.05;
+      background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+    }
 
     body {
       margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background-color: #0a0a0a;
-      color: #d0d0d0;
-      position: relative;
+      font-family: 'Inter', sans-serif;
+      background-color: #f7f7f7;
+      background-image: linear-gradient(#e5e5e5 1px, transparent 1px), linear-gradient(90deg, #e5e5e5 1px, transparent 1px);
+      background-size: 20px 20px;
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 40px 20px;
     }
 
-    body::after {
-      content: "";
+    /* FIXED SIDE TYPOGRAPHY */
+    .side-text-left, .side-text-right {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('https://www.transparenttextures.com/patterns/noisy-grid.png'), url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
-      opacity: 0.12;
-      pointer-events: none;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    .side-text-left {
+      left: 20px;
+      writing-mode: vertical-rl;
+      transform: translateY(-50%) rotate(180deg);
+    }
+
+    .side-text-right {
+      right: 20px;
+      writing-mode: vertical-rl;
+    }
+
+    /* Main Container */
+    .catalog-frame {
+      max-width: 1100px;
+      margin: 0 auto;
+      border: 1px solid var(--grid-line);
+      background-color: #fff;
+      position: relative;
+      z-index: 10;
     }
 
     header {
-      background: linear-gradient(90deg, #111, #440000);
-      padding: 30px;
-      text-align: center;
-      font-size: 2rem;
+      position: sticky;
+      top: 0;
+      background: #ffffff;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--grid-line);
+      z-index: 100;
+      font-family: 'JetBrains Mono', monospace;
       text-transform: uppercase;
-      font-weight: bold;
-      letter-spacing: 2px;
-      box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.3);
+      font-size: 0.85rem;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(to right, var(--bau-red) 33.3%, var(--bau-yellow) 33.3%, var(--bau-yellow) 66.6%, var(--bau-blue) 66.6%);
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    /* INVERT CONTROLS */
+    .sys-controls {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    #invert-btn {
+      background: none;
+      border: 1px solid var(--grid-line);
+      color: var(--text-main);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      cursor: crosshair;
+      transition: all 0.2s ease;
+    }
+
+    #invert-btn:hover {
+      background: var(--text-main);
+      color: var(--bg-color);
     }
 
     nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 200px;
-      height: 100%;
-      background-color: #1a0a0a;
-      padding-top: 120px;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+      display: flex;
+      gap: 30px;
+      align-items: center;
     }
 
     nav a {
-      display: block;
-      color: #ff3300;
-      padding: 15px;
+      color: var(--text-main);
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
+      transition: color 0.2s ease;
     }
 
     nav a:hover {
-      background-color: #440000;
+      color: var(--bau-red);
     }
 
-    .content {
-      margin-left: 220px;
-      padding: 40px;
+    .social-links {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .social-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .social-links a.imdb-link {
+      color: var(--bau-yellow);
+    }
+
+    .social-links a:hover {
+      color: var(--bau-red);
+    }
+
+    .container {
+      padding: 0;
     }
 
     section {
-      width: 80%;
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 20px;
-      background: rgba(40, 10, 10, 0.9);
-      border-radius: 12px;
-      box-shadow: 0px 0px 15px rgba(255, 0, 0, 0.3);
-      transition: transform 0.3s ease-in-out;
+      border-bottom: 1px solid var(--grid-line);
+      padding: 60px 40px;
+    }
+    
+    section:last-child {
+      border-bottom: none;
     }
 
-    section:hover {
-      transform: scale(1.03);
+    h2 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      text-transform: uppercase;
+      margin-top: 0;
+      margin-bottom: 40px;
+      color: var(--text-main);
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
     }
 
-    iframe {
+    h2::before {
+      content: "";
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin-right: 15px;
+    }
+    #about h2::before { background-color: var(--bau-blue); }
+    #film h2::before { background-color: var(--bau-red); }
+    #electronic h2::before { background-color: var(--bau-yellow); }
+    #collaborators h2::before { background-color: var(--text-main); }
+
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-top: 0;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .profile-photo {
       width: 100%;
-      height: 500px;
-      border-radius: 5px;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      background-color: #eee;
+      filter: saturate(0.8) contrast(1.15) brightness(0.95);
+      border: 1px solid var(--grid-line);
+    }
+
+    .bio-text p {
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+    }
+
+    .film-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .project-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .film-grid .project-item:first-child {
+      grid-column: 1 / -1;
+      border-bottom: 1px solid var(--grid-line);
+      padding-bottom: 40px;
+    }
+
+    .film-grid .project-item:first-child h3 {
+      font-size: 2rem;
+      text-transform: uppercase;
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      margin-top: 20px;
+      border: 1px solid var(--grid-line);
+      background: #000;
+      width: 100%;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       border: none;
     }
 
-    a {
-      color: #ff3300;
-      text-decoration: none;
-      font-weight: bold;
+    .audio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .audio-item {
+      border: 1px solid var(--grid-line);
+      padding: 20px;
+      background: #fafafa;
+      transition: background 0.2s ease;
     }
 
-    .logos {
+    .audio-item:hover {
+      background: #ffffff;
+    }
+
+    .audio-item h3 {
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    .audio-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .text-logo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background-color: var(--grid-line);
+      border: 1px solid var(--grid-line);
+    }
+
+    .text-logo-grid a {
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
       justify-content: center;
-      gap: 20px;
-      margin-top: 20px;
+      min-height: 100px;
+      padding: 20px;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 0.5px;
+      transition: all 0.2s ease;
     }
 
-    .logos img {
-      height: 60px;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
+    .text-logo-grid a:hover {
+      background-color: var(--text-main);
+      color: var(--bg-color);
+    }
+
+    .visual-signoff {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 40px;
+      background: #ffffff;
+      width: 100%;
+    }
+
+    .signoff-wrapper {
+      width: 220px;
+      border: 1px solid var(--grid-line);
+      background: #fafafa;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 1 / 1;
+    }
+
+    .signoff-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) contrast(1.2);
+      transition: filter 0.3s ease;
+    }
+
+    .signoff-wrapper:hover .signoff-img {
+      filter: grayscale(0%) contrast(1.05);
+    }
+
+    @media (max-width: 850px) {
+      .about-grid, .audio-grid, .film-grid {
+        grid-template-columns: 1fr;
+      }
+      .film-grid .project-item:first-child h3 {
+        font-size: 1.5rem;
+      }
+      header {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .logo {
+        flex-direction: column;
+        gap: 10px;
+      }
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .visual-signoff {
+        flex-direction: row;
+        gap: 20px;
+      }
+      .signoff-wrapper {
+        width: calc(50% - 10px);
+        max-width: 220px;
+      }
+      .side-text-left, .side-text-right {
+        display: none;
+      }
     }
   </style>
-  <script src="https://player.vimeo.com/api/player.js"></script>
 </head>
 <body>
-  <header>Odysseas Pantazis</header>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-    <a href="#collaborators">Collaborators</a>
-  </nav>
 
-  <div class="content">
-    
+  <!-- GLOBAL FILM GRAIN -->
+  <div id="grain-overlay"></div>
 
-    <section id="about">
-  <h2>About</h2>
-  <p>
-    Odysseas Pantazis is a composer, sound designer, and emerging filmmaker whose work spans music composition, experimental cinema, and narrative sound. Based in London with roots in Cyprus, his creative practice explores the tension between structured composition and abstract sonic environments, often shaped through field recordings, analog processing, and unconventional forms.
-  </p>
-  <p>
-    Currently studying Film Music at Guildhall School of Music & Drama, he works across scoring, sound design, and collaborative film-based projects. While his main focus remains in musical experimentation, he has increasingly incorporated moving image into his work as a way to explore sonic ideas through film.
-  </p>
-</section>
+  <!-- BACKGROUND FIXED TEXT -->
+  <div class="side-text-left">ODY.PANTAZIS // LNDN</div>
+  <div class="side-text-right">ARCHIVE SYSTEM // 2026</div>
 
+  <div class="catalog-frame">
+    <header>
+      <div class="logo">
+        Odysseas Pantazis
+        <div class="sys-controls">
+          <button id="invert-btn">[ INVERT ]</button>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#film">Film</a>
+        <a href="#electronic">Music</a>
+        <a href="#collaborators">Collaborators</a>
+        <div class="social-links">
+          <a href="https://www.imdb.com/name/nm17583952/" target="_blank" title="IMDb" class="imdb-link">IMDb</a>
+          <a href="mailto:odypantazis@gmail.com" title="Email">Email</a>
+        </div>
+      </nav>
+    </header>
 
+    <div class="container">
+      
+      <!-- 01 / PROFILE SECTION -->
+      <section id="about">
+        <h2>01 / Profile</h2>
+        <div class="about-grid">
+          
+          <img src="https://i.postimg.cc/65B3yjMF/DSCF1024.jpg" alt="Odysseas Pantazis" class="profile-photo">
+          
+          <div class="bio-text">
+            <p>
+              Odysseas Pantazis is a composer, sound designer, and emerging filmmaker whose work spans music composition, experimental cinema, and narrative sound. Based in London with roots in Cyprus, his creative practice explores the tension between structured composition and abstract sonic environments, often shaped through field recordings, analog processing, and unconventional forms. By balancing structural precision with raw, texture-driven noise, his compositions build visceral sonic atmospheres that morph seamlessly between tension and total immersion.
+            </p>
+            <p>
+              Currently studying Film Music at Guildhall School of Music & Drama, he works across scoring, sound design, and collaborative film-based projects. While his main focus remains in musical experimentation, he has increasingly incorporated moving image into his work as a way to explore sonic ideas through film.
+            </p>
+          </div>
+        </div>
+      </section>
 
+      <!-- 02 / FILM ARCHIVES SECTION -->
+      <section id="film">
+        <h2>02 / Film Archives</h2>
+        
+        <div class="film-grid">
+          
+          <!-- PRIMARY FILM -->
+          <div class="project-item">
+            <h3>Berlinus Rhythmus</h3>
+            <p>Capturing the rhythms of Berlin.</p>
+            <div class="video-wrapper" style="padding-bottom: 75%;">
+              <iframe src="https://player.vimeo.com/video/1192723227?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="BERLINUS RHYTHMUS"></iframe>
+            </div>
+          </div>
+          
+          <!-- SUPPORTING FILM 1 -->
+          <div class="project-item">
+            <h3>Bauhaus Film</h3>
+            <p>A visual and sonic exploration inspired by brutalist architecture and modernist design.</p>
+            <div class="video-wrapper">
+              <iframe src="https://player.vimeo.com/video/1085350114?h=83e3ce8940&badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture" title="bauhaus_film"></iframe>
+            </div>
+          </div>
 
+          <!-- SUPPORTING FILM 2 -->
+          <div class="project-item">
+            <h3>Αεεμμ</h3>
+            <p>A surreal auditory and visual experience.</p>
+            <div class="video-wrapper">
+              <iframe src="https://player.vimeo.com/video/1055039350?h=492d545e98&title=0&byline=0&portrait=0" allowfullscreen></iframe>
+            </div>
+          </div>
 
-    <section id="projects">
-  <h2>Projects</h2>
+        </div>
+      </section>
 
-  <h3>Bauhaus Film</h3>
-  <p>A visual and sonic exploration inspired by brutalist architecture and modernist design.</p>
-  <div style="padding:75% 0 0 0;position:relative;">
-    <iframe src="https://player.vimeo.com/video/1085350114?h=83e3ce8940&badge=0&autopause=0&player_id=0&app_id=58479"
-            frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-            style="position:absolute;top:0;left:0;width:100%;height:100%;" title="bauhaus_film_1.0"></iframe>
+      <!-- 03 / ELECTRONIC PIECES SECTION -->
+      <section id="electronic">
+        <h2>03 / Music</h2>
+        <div class="audio-grid">
+          
+          <!-- Track 1 -->
+          <div class="audio-item">
+            <h3>Track 1.1</h3>
+            <div class="audio-meta">OBJ. 001 // Audio File</div>
+            <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2321432867%3Fsecret_token%3Ds-SPW2JwV4jon&color=%23ff9900&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/odysseaspantazis" title="Odysseas Pantazis" target="_blank" style="color: #cccccc; text-decoration: none;">Odysseas Pantazis</a> · <a href="https://soundcloud.com/odysseaspantazis/track-1-1/s-SPW2JwV4jon" title="track 1" target="_blank" style="color: #cccccc; text-decoration: none;">track 1</a></div>
+          </div>
+
+          <!-- Track 2 -->
+          <div class="audio-item">
+            <h3>Track 2.2</h3>
+            <div class="audio-meta">OBJ. 002 // Audio File</div>
+            <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2321432870%3Fsecret_token%3Ds-xAtr5Kg8Jl0&color=%23ff9900&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/odysseaspantazis" title="Odysseas Pantazis" target="_blank" style="color: #cccccc; text-decoration: none;">Odysseas Pantazis</a> · <a href="https://soundcloud.com/odysseaspantazis/track-2-2/s-xAtr5Kg8Jl0" title="track 2" target="_blank" style="color: #cccccc; text-decoration: none;">track 2</a></div>
+          </div>
+
+          <!-- Track 3 -->
+          <div class="audio-item">
+            <h3>Valse Triste</h3>
+            <div class="audio-meta">OBJ. 003 // Audio File</div>
+            <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2321432861%3Fsecret_token%3Ds-VLqkLL4SiCk&color=%23ff9900&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/odysseaspantazis" title="Odysseas Pantazis" target="_blank" style="color: #cccccc; text-decoration: none;">Odysseas Pantazis</a> · <a href="https://soundcloud.com/odysseaspantazis/valse-triste-3/s-VLqkLL4SiCk" title="valse triste" target="_blank" style="color: #cccccc; text-decoration: none;">valse triste</a></div>
+          </div>
+
+          <!-- Track 4 -->
+          <div class="audio-item">
+            <h3>Fountainhead</h3>
+            <div class="audio-meta">OBJ. 004 // Audio File</div>
+            <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2321435369%3Fsecret_token%3Ds-01blNrGGXh4&color=%23ff9900&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/odysseaspantazis" title="Odysseas Pantazis" target="_blank" style="color: #cccccc; text-decoration: none;">Odysseas Pantazis</a> · <a href="https://soundcloud.com/odysseaspantazis/fountainhead/s-01blNrGGXh4" title="Fountainhead" target="_blank" style="color: #cccccc; text-decoration: none;">Fountainhead</a></div>
+          </div>
+
+          <!-- Track 5 -->
+          <div class="audio-item">
+            <h3>I'm</h3>
+            <div class="audio-meta">OBJ. 005 // Audio File</div>
+            <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2321436104%3Fsecret_token%3Ds-75aVoTS6nsO&color=%23ff9900&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/odysseaspantazis" title="Odysseas Pantazis" target="_blank" style="color: #cccccc; text-decoration: none;">Odysseas Pantazis</a> · <a href="https://soundcloud.com/odysseaspantazis/im/s-75aVoTS6nsO" title="I&#x27;m" target="_blank" style="color: #cccccc; text-decoration: none;">I&#x27;m</a></div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 04 / DIRECTORY SECTION -->
+      <section id="collaborators">
+        <h2>04 / Directory</h2>
+        <div class="text-logo-grid">
+          <a href="https://www.barbican.org.uk" target="_blank">Barbican Centre</a>
+          <a href="https://www.rca.ac.uk" target="_blank">Royal College of Art</a>
+          <a href="https://www.nationalgallery.org.uk" target="_blank">National Gallery</a>
+          <a href="https://www.arts.ac.uk" target="_blank">University of the Arts London</a>
+          <a href="https://aru.ac.uk" target="_blank">Anglia Ruskin University</a>
+          <a href="https://www.gsmd.ac.uk" target="_blank">Guildhall School of Music & Drama</a>
+          <a href="https://www.cityoflondon.gov.uk" target="_blank">City of London</a>
+          <a href="https://www.mica.edu" target="_blank">MICA Film School</a>
+          <a href="https://www.target3d.co.uk" target="_blank">Target3D</a>
+        </div>
+      </section>
+
+      <!-- THE ABSOLUTE FOOTER ARTIFACTS -->
+      <div class="visual-signoff">
+        <div class="signoff-wrapper">
+          <img src="https://i.postimg.cc/nhVFTXmg/0B7FAAAF-D557-4599-A0B7-070EFD3CB5A2-2.jpg" alt="Artifact 1" class="signoff-img">
+        </div>
+        <div class="signoff-wrapper">
+          <img src="https://i.postimg.cc/mkN4y4gM/73C50217-D6C1-4279-8CE9-B0DFCDD382B2.jpg" alt="Artifact 2" class="signoff-img">
+        </div>
+      </div>
+
+    </div>
   </div>
 
-  <h3>Αεεμμ</h3>
-      <p>A surreal auditory and visual experience.</p>
-      <iframe src="https://player.vimeo.com/video/1055039350?h=492d545e98&title=0&byline=0&portrait=0" allowfullscreen></iframe>
-
-      <h3>Film Archives</h3>
-      <p>Exploring memories and forgotten visuals.</p>
-      <iframe src="https://player.vimeo.com/video/1055039721?h=2dff7ae3cd&title=0&byline=0&portrait=0" allowfullscreen></iframe>
-    </section>
-
-
-<section id="contact">
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:odypantazis@gmail.com">odypantazis@gmail.com</a></p>
-  <p>Instagram: <a href="https://instagram.com/odysseaspantazis" target="_blank">@odysseaspantazis</a></p>
-</section>
-
-<section id="collaborators">
-      <h2>Selected Collaborators</h2>
-      <ul>
-        <li>Barbican Centre</li>
-        <li>Royal College of Art</li>
-        <li>National Gallery</li>
-        <li>University of the Arts London (UAL)</li>
-        <li>Anglia Ruskin University</li>
-        <li>Guildhall School of Music & Drama</li>
-      </ul>
-    </section>
-  </div>
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script>
+    // INVERT SYSTEM SWITCH
+    document.getElementById('invert-btn').addEventListener('click', function() {
+      document.documentElement.classList.toggle('invert-active');
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
